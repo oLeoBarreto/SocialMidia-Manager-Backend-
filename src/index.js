@@ -9,14 +9,14 @@ const app = express();
 //TODO: Testar Sessao
 app.set('trust proxy', 1);
 app.use(session({
-    secret: '',
+    secret: 'dyE3RGSP&mzYZN8mw2d%cmjL_wCKg?g+jASW6Fs4',
     resave: true,
     saveUninitialized: true,
     cookie: { secure: true }
 }));
 app.use(flash());
 
-//Midlleware
+// //Midlleware
 app.use((req, res, next) => {
     req.session.cookie.expires = new Date(Date.now() + 3600000); 
     res.locals.success_msg = req.flash("success_msg");
@@ -28,16 +28,16 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 
 //TODO: Criar rotas para cada api 
-app.get('/api/v1', async (req, res, next) => {
-    try {
-        const { data } = await axios.get('https://viacep.com.br/ws/01001000/json/');   
-        return res.json(data);
-    } catch (error) {
-        console.error(error);
-    }
-});
+// app.get('/api/v1', async (req, res, next) => {
+//     try {
+//         const { data } = await axios.get('https://viacep.com.br/ws/01001000/json/');   
+//         return res.json(data);
+//     } catch (error) {
+//         console.error(error);
+//     }
+// });
 
 //TODO: Criar as da aplicação Routes 
-
+require('./controller/authController')(app);
 
 module.exports = app;   
