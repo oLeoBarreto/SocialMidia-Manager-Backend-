@@ -1,5 +1,6 @@
 const mongoo = require('../database');
 const bcrypt = require('bcrypt');
+const saltRounds = 10;
 
 const UserSchema = new mongoo.Schema({
     name: {
@@ -13,7 +14,7 @@ const UserSchema = new mongoo.Schema({
     },
     password: {
         type: String,
-        required: true,
+        required: false,
         select: false,
     },
     createdAt: {
@@ -23,9 +24,8 @@ const UserSchema = new mongoo.Schema({
 });
 
 UserSchema.pre('save', async (next) => {
-    const hash = await bcrypt.hash(this.password, 10);
-    this.password = hash;
-
+    const hash = await bcrypt.hash(this.password, saltRounds).then((hash) => this.password = hash );
+   
     next();
 });
 
