@@ -1,14 +1,13 @@
 const mongoose = require('mongoose');
-const MONGODB_CLUSTER = process.env.CLUSTERLINK;
 const conectString = '';
 
 try {
-    mongoose.connect(conectString, { useNewUrlParser: true, useUnifiedTopology: true }, () => console.log(" MongoAtlas is connected"));
+    mongoose.connect(conectString, { useNewUrlParser: true, useUnifiedTopology: true });
     mongoose.Promise = global.Promise;
+    console.log('//=================================//');
+    console.log(" MongoAtlas is connected");
 } catch (error) {
-    console.log("could not connect");
+    console.log("could not connect: " + error);
 }
-
-//FIXME: Arrumer variavel de ambiente
 
 module.exports = mongoose;

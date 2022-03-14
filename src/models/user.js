@@ -1,6 +1,4 @@
 const mongoo = require('../database');
-const bcrypt = require('bcrypt');
-const saltRounds = 10;
 
 const UserSchema = new mongoo.Schema({
     name: {
@@ -21,12 +19,6 @@ const UserSchema = new mongoo.Schema({
         type: Date,
         default: Date.now,
     }
-});
-
-UserSchema.pre('save', async (next) => {
-    const hash = await bcrypt.hash(this.password, saltRounds).then((hash) => this.password = hash );
-   
-    next();
 });
 
 const User = mongoo.model("User", UserSchema);

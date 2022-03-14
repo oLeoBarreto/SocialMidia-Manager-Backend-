@@ -8,6 +8,7 @@ const flash = require('connect-flash');
 const cookieParser = require("cookie-parser");
 
 const app = express();
+const router = express.Router();
 
 //TODO: Testar Sessao
 app.set('trust proxy', 1);
@@ -21,13 +22,6 @@ app.use(session({
 }));
 app.use(flash());
 
-// //Midlleware
-/*app.use((req, res, next) => {
-    req.session.cookie.expires = new Date(Date.now() + 3600000); 
-    res.locals.success_msg = req.flash("success_msg");
-    res.locals.error_msg = req.flash("error_msg");
-    next();
-});*/
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());

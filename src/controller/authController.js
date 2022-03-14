@@ -4,14 +4,19 @@ const User = require('../models/user');
 const bcrypt = require('bcrypt');
 
 router.post('/register', async (req, res) => {
-    const { email } = req.body;
+    const { email, password, name } = req.body;
+    const hash = await bcrypt.hash(password, 10);
 
     try {
         if (await User.findOne({ email })) {
             return res.status(400).send({ error: "Users already exist!" });
         }
 
-        const user = await User.create(req.body);
+        const user = await User.create({
+            name: name,
+            email: email,
+            password: hash,
+        });
         user.password = undefined;
 
         return res.status(200).send({ user });
@@ -30,19 +35,20 @@ router.post('/login', async (req, res) => {
 
     if (!await bcrypt.compare(password, user.password)) {
         return res.status(400).send({ error: "Invalid password!" });
-    }   
+    }
 
     user.password = undefined;
+    req.session.user = user;
     res.send({ user });
 
 });
 
 router.get("/login", (req, res) => {
     if (req.session.user) {
-      res.send({ loggedIn: true, user: req.session.user });
+        res.send({ loggedIn: true, user: req.session.user });
     } else {
-      res.send({ loggedIn: false });
+        res.send({ loggedIn: false });
     }
-  });
+});
 
 module.exports = app => app.use('/auth', router);
