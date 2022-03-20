@@ -5,13 +5,13 @@
     [x] Aprender a fazer require http no Node
     [x] Teste Simples de Require 
     [] Testar Rec da API do Instagram
-    [] Testar Rec da API do Twitter
+    [x] Testar Rec da API do Twitter
     [] Testar Rec da API do TikTok
 
 ##  Banco de dados
 
     [x] Estudar qual o banco de dados iremos usar (MongoDB ou AzureDB) - MongoDB
-    [] Criar conexão e schema do banco 
+    [x] Criar conexão e schema do banco 
     [] Criação do CRUD
 
 ## Modos de fazer req no Node.js

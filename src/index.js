@@ -1,16 +1,13 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const axios = require('axios');
 
 const session = require('express-session');
 const flash = require('connect-flash');
 const cookieParser = require("cookie-parser");
 
 const app = express();
-const router = express.Router();
 
-//TODO: Testar Sessao
 app.set('trust proxy', 1);
 app.use(session({
     secret: 'dyE3RGSP&mzYZN8mw2d%cmjL_wCKg?g+jASW6Fs4',
@@ -31,17 +28,9 @@ app.use(cors({
     credentials: true,
 }));
 
-//TODO: Criar rotas para cada api 
-// app.get('/api/v1', async (req, res, next) => {
-//     try {
-//         const { data } = await axios.get('https://viacep.com.br/ws/01001000/json/');   
-//         return res.json(data);
-//     } catch (error) {
-//         console.error(error);
-//     }
-// });
-
 //TODO: Criar as da aplicação Routes 
 require('./controller/authController')(app);
+require('./controller/reminderController')(app);
+require('./APIs/twitter')(app);
 
 module.exports = app;   

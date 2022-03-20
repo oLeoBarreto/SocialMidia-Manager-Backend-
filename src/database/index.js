@@ -1,5 +1,6 @@
+require('dotenv/config');
 const mongoose = require('mongoose');
-const conectString = '';
+const conectString = process.env.CLUSTERLINK;
 
 try {
     mongoose.connect(conectString, { useNewUrlParser: true, useUnifiedTopology: true });
