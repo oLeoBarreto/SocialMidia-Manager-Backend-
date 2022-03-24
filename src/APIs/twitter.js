@@ -12,13 +12,12 @@ var twitter = new Twit({
 });
 
 router.get("/twitter", (req, res) => {
-    try {
-        twitter.get("https://api.twitter.com/2/lists/:id/followers", (err, data, response) => {
+    twitter.get("https://api.twitter.com/1.1/followers/ids.json", (err, data, response) => {
             res.status(200).send({ data });
-        });
-    } catch (err) {
-        res.status(400).send({ error: "Bad request" });
-    }
+        if (err) {
+            console.error(err);
+        }
+    });
 });
 
 module.exports = app => app.use("/api", router); 
