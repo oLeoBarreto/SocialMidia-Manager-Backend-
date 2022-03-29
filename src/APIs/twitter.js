@@ -11,13 +11,26 @@ var twitter = new Twit({
     access_token_secret: process.env.TWITTER_ACCESS_TOKEN_SECRET,
 });
 
-router.get("/twitter", (req, res) => {
-    twitter.get("https://api.twitter.com/1.1/followers/ids.json", (err, data, response) => {
-            res.status(200).send({ data });
+router.get("/Followers", (req, res) => {
+    twitter.get("https://api.twitter.com/1.1/followers/list.json", (err, data, response) => {
+        let followersNumber = data.users.length;
+        res.status(200).send({ followersNumber });
+
         if (err) {
-            console.error(err);
+            res.status(400).send({ error: "Error of get method! " + err });
         }
     });
 });
 
-module.exports = app => app.use("/api", router); 
+router.get("/Friends", (req, res) => {
+    twitter.get("https://api.twitter.com/1.1/friends/list.json", (err, data, response) => {
+        let friendsNumber = data.users.length;
+        res.status(200).send({ friendsNumber });
+
+        if (err) {
+            res.status(400).send({ error: "Error of get method! " + err });
+        }
+    });
+});
+
+module.exports = app => app.use("/api/twitter", router); 

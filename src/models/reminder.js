@@ -3,13 +3,14 @@ const mongoo = require("../database");
 const reminderSchema = new mongoo.Schema({
     title: {
         type: String,
-        required: true,
+        required: false,
+        uppercase: true,
     },
     tag: [String],
     dateHour: {
         type: Date,
     },
-    participants: [Number],
+    participants: [String],
     createdAt: {
         type: Date,
         default: Date.now,

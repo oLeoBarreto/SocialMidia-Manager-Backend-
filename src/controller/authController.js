@@ -3,6 +3,8 @@ const router = express.Router();
 const User = require('../models/user');
 const bcrypt = require('bcrypt');
 
+// == POST == //
+
 router.post('/register', async (req, res) => {
     const { email, password, name } = req.body;
     const hash = await bcrypt.hash(password, 10);
@@ -42,6 +44,8 @@ router.post('/login', async (req, res) => {
     res.send({ user });
 
 });
+
+// == GET == //
 
 router.get("/login", (req, res) => {
     if (req.session.user) {

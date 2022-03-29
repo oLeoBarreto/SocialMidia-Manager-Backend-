@@ -8,6 +8,9 @@ const cookieParser = require("cookie-parser");
 
 const app = express();
 
+// == MIDDLEWARE == //
+
+// Session
 app.set('trust proxy', 1);
 app.use(session({
     secret: 'dyE3RGSP&mzYZN8mw2d%cmjL_wCKg?g+jASW6Fs4',
@@ -19,6 +22,7 @@ app.use(session({
 }));
 app.use(flash());
 
+//Cookies
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
@@ -28,7 +32,7 @@ app.use(cors({
     credentials: true,
 }));
 
-//TODO: Criar as da aplicação Routes 
+// == Application Routes == //
 require('./controller/authController')(app);
 require('./controller/reminderController')(app);
 require('./APIs/twitter')(app);
