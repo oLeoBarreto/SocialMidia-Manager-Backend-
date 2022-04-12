@@ -34,6 +34,7 @@
 
     [x] Estudar qual o banco de dados iremos usar (MongoDB ou AzureDB) - MongoDB
     [x] Criar conexão e schema do banco 
+    [] Arrumar model Reminder;
 
 ## Modos de fazer req no Node.js
     -Usando a lib Request (https://www.npmjs.com/package/request)

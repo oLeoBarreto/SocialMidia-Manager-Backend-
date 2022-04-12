@@ -10,7 +10,10 @@ const reminderSchema = new mongoo.Schema({
     dateHour: {
         type: Date,
     },
-    participants: [String],
+    user: {
+        type: String,
+        required: true
+    },
     createdAt: {
         type: Date,
         default: Date.now,
