@@ -1,6 +1,6 @@
-const mongoo = require("../database");
+const { Schema, model } = require("../database");
 
-const reminderSchema = new mongoo.Schema({
+const reminderSchema = new Schema({
     title: {
         type: String,
         required: false,
@@ -10,16 +10,13 @@ const reminderSchema = new mongoo.Schema({
     dateHour: {
         type: Date,
     },
-    user: {
-        type: String,
-        required: true
-    },
+    user: { type: Schema.Types.ObjectId, ref: 'User'},
     createdAt: {
         type: Date,
         default: Date.now,
     }
 });
 
-const Reminder = mongoo.model("Reminder", reminderSchema);
+const Reminder = model("Reminder", reminderSchema);
 
 module.exports = Reminder;

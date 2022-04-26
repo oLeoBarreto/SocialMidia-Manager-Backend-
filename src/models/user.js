@@ -1,6 +1,6 @@
-const mongoo = require('../database');
+const { Schema, model } = require("../database");
 
-const UserSchema = new mongoo.Schema({
+const UserSchema = new Schema({
     name: {
         type: String,
         required: true,
@@ -23,6 +23,6 @@ const UserSchema = new mongoo.Schema({
     }
 });
 
-const User = mongoo.model("User", UserSchema);
+const User = model("User", UserSchema);
 
 module.exports = User;

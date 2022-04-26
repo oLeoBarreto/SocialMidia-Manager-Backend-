@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const User = require('../models/user');
 const bcrypt = require('bcrypt');
+const emailWorker = require('../services/emailSender');
 
 // == POST == //
 
@@ -21,7 +22,9 @@ router.post('/register', async (req, res) => {
         });
         user.password = undefined;
 
-        return res.status(200).send({ user });
+        emailWorker(email, res);
+
+        return res.status(201).send({ user });
     } catch (err) {
         return res.status(400).send({ error: "Register failed!" });
     }
