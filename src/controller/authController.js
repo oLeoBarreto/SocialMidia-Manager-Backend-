@@ -22,11 +22,11 @@ router.post('/register', async (req, res) => {
         });
         user.password = undefined;
 
-        emailWorker(email, res);
+        emailWorker(email);
 
-        return res.status(201).send({ user });
+        return res.status(201).send({ user: user });
     } catch (err) {
-        return res.status(400).send({ error: "Register failed!" });
+        return res.status(400).send({ error: "Register failed!", response: err });
     }
 });
 
@@ -44,7 +44,7 @@ router.post('/login', async (req, res) => {
 
     user.password = undefined;
     req.session.user = user;
-    res.send({ user });
+    res.send({ user: user });
 
 });
 
@@ -55,6 +55,18 @@ router.get("/login", (req, res) => {
         res.send({ loggedIn: true, user: req.session.user });
     } else {
         res.send({ loggedIn: false });
+    }
+});
+
+// == DELETE == //
+
+router.delete("/deleteUser/:ID", async (req, res) => {
+    try {
+        let { ID } = req.params;
+        const deletedUser = await Reminder.findByIdAndDelete(ID);
+        return res.status(200).send({ msg: "User deleted!" });
+    } catch (error) {
+        res.status(400).send({ error: "Can't delete the user", response: error });
     }
 });
 

@@ -10,7 +10,7 @@ const reminderSchema = new Schema({
     dateHour: {
         type: Date,
     },
-    user: { type: Schema.Types.ObjectId, ref: 'User'},
+    user: { type: Schema.Types.ObjectId, ref: 'User' },
     createdAt: {
         type: Date,
         default: Date.now,
