@@ -7,14 +7,14 @@ const router = express.Router();
 router.post("/newReminder", async (req, res) => {
 
     const { title, tags, dateHour } = req.body;
-    const loggedUser = req.session.user._id;
+    //const loggedUser = req.session.user._id;
 
     try {
         const reminder = await Reminder.create({
             title: title,
             tag: tags,
             dateHour: dateHour,
-            user: loggedUser,
+            //user: loggedUser,
         });
         return res.status(201).send({ reminder: reminder });
     } catch (error) {
@@ -27,7 +27,7 @@ router.post("/newReminder", async (req, res) => {
 router.get("/getReminders", async (req, res) => {
     try {
         const getReminders = await Reminder.find();
-        return res.status(200).send({ reminders: getReminders });
+        return res.json(getReminders);
     } catch (error) {
         return res.status(400).send({ error: "Error to find a reminder", response: error });
     }

@@ -18,10 +18,12 @@
     "cors": "^2.8.5",
     "dotenv": "^16.0.0",
     "express": "^4.17.2",
+    "express-rate-limit": "^6.4.0",
     "express-session": "^1.17.2",
     "mongoose": "^6.2.3",
     "nodemailer": "^6.7.3",
     "passport": "^0.5.2",
+    "rate-limiter-flexible": "^2.3.7",
     "twit": "^2.2.11"
   },
   "devDependencies": {

@@ -5,10 +5,12 @@ const cors = require('cors');
 const session = require('express-session');
 const flash = require('connect-flash');
 const cookieParser = require("cookie-parser");
+const rateLimit = require('./middleware/rateLimiter');
 
 const app = express();
 
 // == MIDDLEWARE == //
+app.use(rateLimit);
 
 // Session
 app.set('trust proxy', 1);
