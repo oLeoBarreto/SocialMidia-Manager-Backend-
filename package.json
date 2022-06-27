@@ -21,6 +21,7 @@
     "express-rate-limit": "^6.4.0",
     "express-session": "^1.17.2",
     "mongoose": "^6.2.3",
+    "multer": "^1.4.5-lts.1",
     "nodemailer": "^6.7.3",
     "passport": "^0.5.2",
     "rate-limiter-flexible": "^2.3.7",

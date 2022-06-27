@@ -6,11 +6,12 @@ const reminderSchema = new Schema({
         required: false,
         uppercase: true,
     },
-    tag: [String],
-    dateHour: {
+    description: {
+        type: String,
+    },
+    date: {
         type: Date,
     },
-    user: { type: Schema.Types.ObjectId, ref: 'User' },
     createdAt: {
         type: Date,
         default: Date.now,

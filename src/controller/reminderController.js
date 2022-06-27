@@ -6,15 +6,13 @@ const router = express.Router();
 
 router.post("/newReminder", async (req, res) => {
 
-    const { title, tags, dateHour } = req.body;
-    //const loggedUser = req.session.user._id;
+    const { title, description, date } = req.body;
 
     try {
         const reminder = await Reminder.create({
-            title: title,
-            tag: tags,
-            dateHour: dateHour,
-            //user: loggedUser,
+            title,
+            description,
+            date,
         });
         return res.status(201).send({ reminder: reminder });
     } catch (error) {
